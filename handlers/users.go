@@ -224,12 +224,10 @@ func GetUserByIdHandler(r shared.WebRequest, server ScimServer, ctx context.Cont
 
 	dp, err := server.Repository(shared.UserResourceType).Get(id, version)
 	ErrorCheck(err)
-	//location := dp.GetData()["meta"].(map[string]interface{})["location"].(string)
-	location := ""
-
+	location := dp.GetData()["meta"].(map[string]interface{})["location"].(string)
+	// location := ""
 	json, err := server.MarshalJSON(dp, sch, attributes, excludedAttributes)
 	ErrorCheck(err)
-
 	ri.Status(http.StatusOK)
 	ri.ScimJsonHeader()
 	if len(version) > 0 {
