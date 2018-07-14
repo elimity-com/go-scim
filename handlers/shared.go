@@ -4,12 +4,14 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	. "github.com/davidiamyou/go-scim/shared"
-	"github.com/satori/go.uuid"
+	. "go-scim/shared"
 	"net/http"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/satori/go.uuid"
+	"github.com/sirupsen/logrus"
 )
 
 // interface for server, provides all necessary components for processing
@@ -52,6 +54,8 @@ type EndpointHandler func(r WebRequest, server ScimServer, ctx context.Context) 
 // error handlers are supposed to recover it and write appropriate responses
 func ErrorCheck(err error) {
 	if err != nil {
+		logrus.Debugf("SCIM error: ", err.Error())
+		// debug.PrintStack()
 		panic(err)
 	}
 }

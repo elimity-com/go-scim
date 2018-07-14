@@ -3,12 +3,13 @@ package main
 import (
 	"context"
 	"fmt"
-	web "github.com/davidiamyou/go-scim/handlers"
-	"github.com/davidiamyou/go-scim/mongo"
-	scim "github.com/davidiamyou/go-scim/shared"
-	"github.com/go-zoo/bone"
+	web "go-scim/handlers"
+	"go-scim/mongo"
+	scim "go-scim/shared"
 	"io/ioutil"
 	"net/http"
+
+	"github.com/go-zoo/bone"
 )
 
 // setup everything

@@ -2,10 +2,11 @@ package mongo
 
 import (
 	"fmt"
-	. "github.com/davidiamyou/go-scim/shared"
-	"gopkg.in/mgo.v2/bson"
+	. "go-scim/shared"
 	"reflect"
 	"sync"
+
+	"gopkg.in/mgo.v2/bson"
 )
 
 func convertToMongoQuery(query string, guide AttributeSource) (m bson.M, err error) {

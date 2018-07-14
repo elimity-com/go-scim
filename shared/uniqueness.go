@@ -60,7 +60,7 @@ func (uv *uniquenessValidator) validateUniquenessWithReflection(v reflect.Value,
 						uv.throw(Error.Duplicate(attr.Assist.Path, v0.Interface()), ctx)
 					} else {
 						resourceId := ctx.Value(ResourceId{}).(string)
-						lr, err := repo.Search(SearchRequest{Filter: query, StartIndex: 1})
+						lr, err := repo.Search(SearchRequest{Filter: query, StartIndex: 1, Count: 1})
 						if err != nil {
 							uv.throw(Error.Text("Cannot verify uniqueness: %s", err.Error()), ctx)
 						}

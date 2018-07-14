@@ -2,7 +2,8 @@ package mongo
 
 import (
 	"fmt"
-	. "github.com/davidiamyou/go-scim/shared"
+	. "go-scim/shared"
+
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )

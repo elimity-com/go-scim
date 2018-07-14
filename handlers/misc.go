@@ -3,7 +3,7 @@ package handlers
 import (
 	"context"
 	"encoding/json"
-	"github.com/davidiamyou/go-scim/shared"
+	"go-scim/shared"
 	"math"
 	"net/http"
 	"strings"

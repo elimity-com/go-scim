@@ -2,14 +2,15 @@ package mongo
 
 import (
 	"fmt"
-	. "github.com/davidiamyou/go-scim/shared"
+	. "go-scim/shared"
+	"log"
+	"os"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/ory-am/dockertest.v3"
-	"log"
-	"os"
-	"testing"
 )
 
 var (
