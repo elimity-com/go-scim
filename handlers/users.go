@@ -33,6 +33,9 @@ func CreateUserHandler(r shared.WebRequest, server ScimServer, ctx context.Conte
 	err = repo.Create(resource)
 	ErrorCheck(err)
 
+	schemasPath, _ := shared.NewPath("schemas")
+	resource.Set(schemasPath, []interface{}{sch.Id}, sch)
+
 	json, err := server.MarshalJSON(resource, sch, []string{}, []string{})
 	ErrorCheck(err)
 
@@ -147,6 +150,9 @@ func ReplaceUserHandler(r shared.WebRequest, server ScimServer, ctx context.Cont
 
 	err = repo.Update(id, version, resource)
 	ErrorCheck(err)
+
+	schemasPath, _ := shared.NewPath("schemas")
+	resource.Set(schemasPath, []interface{}{sch.Id}, sch)
 
 	json, err := server.MarshalJSON(resource, sch, []string{}, []string{})
 	ErrorCheck(err)
