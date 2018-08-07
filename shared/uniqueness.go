@@ -64,7 +64,7 @@ func (uv *uniquenessValidator) validateUniquenessWithReflection(v reflect.Value,
 						if err != nil {
 							uv.throw(Error.Text("Cannot verify uniqueness: %s", err.Error()), ctx)
 						}
-						if resourceId != lr.Resources[0].GetData()["id"].(string) {
+						if len(lr.Resources) > 0 && resourceId != lr.Resources[0].GetData()["id"].(string) {
 							uv.throw(Error.Duplicate(attr.Assist.Path, v0.Interface()), ctx)
 						}
 					}

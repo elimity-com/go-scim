@@ -121,36 +121,26 @@ func ReplaceUserHandler(r shared.WebRequest, server ScimServer, ctx context.Cont
 	ri = newResponse()
 	sch := server.InternalSchema(shared.UserUrn)
 	repo := server.Repository(shared.UserResourceType)
-
 	resource, err := ParseBodyAsResource(r)
 	ErrorCheck(err)
-
 	id, version := ParseIdAndVersion(r)
 	ctx = context.WithValue(ctx, shared.ResourceId{}, id)
 	reference, err := repo.Get(id, version)
 	ErrorCheck(err)
-
 	err = server.ValidateType(resource, sch, ctx)
 	ErrorCheck(err)
-
 	err = server.CorrectCase(resource, sch, ctx)
 	ErrorCheck(err)
-
 	err = server.ValidateRequired(resource, sch, ctx)
 	ErrorCheck(err)
-
 	err = server.ValidateMutability(resource, reference.(*shared.Resource), sch, ctx)
 	ErrorCheck(err)
-
 	err = server.ValidateUniqueness(resource, sch, repo, ctx)
 	ErrorCheck(err)
-
 	err = server.AssignReadOnlyValue(resource, ctx)
 	ErrorCheck(err)
-
 	err = repo.Update(id, version, resource)
 	ErrorCheck(err)
-
 	schemasPath, _ := shared.NewPath("schemas")
 	resource.Set(schemasPath, []interface{}{sch.Id}, sch)
 

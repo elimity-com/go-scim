@@ -125,7 +125,7 @@ func ReplaceGroupHandler(r shared.WebRequest, server ScimServer, ctx context.Con
 
 	id, version := ParseIdAndVersion(r)
 	ctx = context.WithValue(ctx, shared.ResourceId{}, id)
-	reference, err := repo.Get(id, version)
+	//reference, err := repo.Get(id, version)
 	ErrorCheck(err)
 
 	err = server.ValidateType(resource, sch, ctx)
@@ -137,8 +137,8 @@ func ReplaceGroupHandler(r shared.WebRequest, server ScimServer, ctx context.Con
 	err = server.ValidateRequired(resource, sch, ctx)
 	ErrorCheck(err)
 
-	err = server.ValidateMutability(resource, reference.(*shared.Resource), sch, ctx)
-	ErrorCheck(err)
+	// err = server.ValidateMutability(resource, reference.(*shared.Resource), sch, ctx)
+	// ErrorCheck(err)
 
 	err = server.ValidateUniqueness(resource, sch, repo, ctx)
 	ErrorCheck(err)

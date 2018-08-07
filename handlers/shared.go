@@ -55,7 +55,6 @@ type EndpointHandler func(r WebRequest, server ScimServer, ctx context.Context) 
 func ErrorCheck(err error) {
 	if err != nil {
 		logrus.Debugf("SCIM error: ", err.Error())
-		// debug.PrintStack()
 		panic(err)
 	}
 }

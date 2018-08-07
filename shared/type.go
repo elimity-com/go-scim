@@ -45,6 +45,10 @@ func (tv *typeValidator) validateTypeWithReflection(v reflect.Value, attr *Attri
 		return
 	}
 
+	if v.IsNil() {
+		return
+	}
+
 	switch v.Kind() {
 	case reflect.Interface, reflect.Ptr:
 		v = v.Elem()
