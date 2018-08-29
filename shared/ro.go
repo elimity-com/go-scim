@@ -5,10 +5,11 @@ import (
 	"crypto/sha1"
 	"encoding/base64"
 	"fmt"
-	"github.com/satori/go.uuid"
 	"math"
 	"strings"
 	"time"
+
+	"github.com/satori/go.uuid"
 )
 
 func NewIdAssignment() ReadOnlyAssignment {
@@ -43,7 +44,10 @@ type metaAssignment struct {
 }
 
 func (ro *metaAssignment) AssignValue(r *Resource, ctx context.Context) error {
-	id := r.Complex["id"].(string)
+	id := ""
+	if r.Complex["id"] != nil {
+		id = r.Complex["id"].(string) // TODO assign id here?
+	}
 	if len(id) == 0 {
 		return Error.Text("Cannot assign value to meta: no id")
 	}

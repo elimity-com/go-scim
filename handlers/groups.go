@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"strings"
 
 	"go-scim/shared"
 )
@@ -123,23 +124,32 @@ func ReplaceGroupHandler(r shared.WebRequest, server ScimServer, ctx context.Con
 	resource, err := ParseBodyAsResource(r)
 	ErrorCheck(err)
 
-	id, version := ParseIdAndVersion(r)
+	//id, version := ParseIdAndVersion(r)
+
+	// BEGIN NO ID HACK
+	parts := strings.Split(r.Target(), "/")
+	id := parts[len(parts)-1]
+	if resource.Complex["id"] == nil {
+		resource.Complex["id"] = id
+	}
+	// END NO ID HACK
+
+	version := ""
 	ctx = context.WithValue(ctx, shared.ResourceId{}, id)
+
 	//reference, err := repo.Get(id, version)
-	ErrorCheck(err)
+	//ErrorCheck(err)
 
 	err = server.ValidateType(resource, sch, ctx)
 	ErrorCheck(err)
 
 	err = server.CorrectCase(resource, sch, ctx)
 	ErrorCheck(err)
-
 	err = server.ValidateRequired(resource, sch, ctx)
 	ErrorCheck(err)
 
 	// err = server.ValidateMutability(resource, reference.(*shared.Resource), sch, ctx)
 	// ErrorCheck(err)
-
 	err = server.ValidateUniqueness(resource, sch, repo, ctx)
 	ErrorCheck(err)
 
@@ -164,6 +174,7 @@ func ReplaceGroupHandler(r shared.WebRequest, server ScimServer, ctx context.Con
 		ri.LocationHeader(location)
 	}
 	ri.Body(json)
+
 	return
 }
 
