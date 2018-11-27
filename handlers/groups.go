@@ -134,6 +134,17 @@ func ReplaceGroupHandler(r shared.WebRequest, server ScimServer, ctx context.Con
 	}
 	// END NO ID HACK
 
+	// BEGIN MEMBERS FIX
+	// If members was not present in the request, it should be interpreted as an empty array
+	// because it is required=false and this is a PUT request which replaces a resource in its
+	// entirety.
+	// Note that both the PUT and PATCH call upon repo.UpdateGroup() and the above only holds for
+	// PUT requests, so we have to update the empty members array here and not in repo.UpdateGroup()
+	if _, found := resource.Complex["members"]; !found {
+		resource.Complex["members"] = make([]interface{},0)
+	}
+	// END MEMBERS FIX
+
 	version := ""
 	ctx = context.WithValue(ctx, shared.ResourceId{}, id)
 
