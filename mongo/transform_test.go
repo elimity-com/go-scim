@@ -1,7 +1,7 @@
 package mongo
 
 import (
-	. "go-scim/shared"
+	. "github.com/elimity-com/go-scim/shared"
 	"reflect"
 	"testing"
 

@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strings"
 
-	"go-scim/shared"
+	"github.com/elimity-com/go-scim/shared"
 )
 
 func CreateGroupHandler(r shared.WebRequest, server ScimServer, ctx context.Context) (ri *ResponseInfo) {

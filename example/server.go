@@ -3,9 +3,9 @@ package main
 import (
 	"context"
 	"fmt"
-	web "go-scim/handlers"
-	"go-scim/mongo"
-	scim "go-scim/shared"
+	web "github.com/elimity-com/go-scim/handlers"
+	"github.com/elimity-com/go-scim/mongo"
+	scim "github.com/elimity-com/go-scim/shared"
 	"io/ioutil"
 	"net/http"
 

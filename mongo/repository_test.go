@@ -2,7 +2,7 @@ package mongo
 
 import (
 	"fmt"
-	. "go-scim/shared"
+	. "github.com/elimity-com/go-scim/shared"
 	"log"
 	"os"
 	"testing"

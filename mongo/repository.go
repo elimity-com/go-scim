@@ -2,7 +2,7 @@ package mongo
 
 import (
 	"fmt"
-	. "go-scim/shared"
+	. "github.com/elimity-com/go-scim/shared"
 
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"

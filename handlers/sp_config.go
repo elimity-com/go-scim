@@ -2,7 +2,7 @@ package handlers
 
 import (
 	"context"
-	"go-scim/shared"
+	"github.com/elimity-com/go-scim/shared"
 	"net/http"
 )
 

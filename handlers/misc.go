@@ -3,7 +3,7 @@ package handlers
 import (
 	"context"
 	"encoding/json"
-	"go-scim/shared"
+	"github.com/elimity-com/go-scim/shared"
 	"math"
 	"net/http"
 	"strings"

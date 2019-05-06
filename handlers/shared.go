@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	. "go-scim/shared"
+	. "github.com/elimity-com/go-scim/shared"
 	"net/http"
 	"strconv"
 	"strings"
